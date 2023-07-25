@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app-example
+spec:
+  selector:
+    matchLabels:
+      app: flask-app-example
+  template:
+    metadata:
+      labels:
+        app: flask-app-example
+    spec:
+      containers:
+      - name: flask-app-example
+        image: sanjaybhide1990/flask-docker-app:v2
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-app-service
+spec:
+  selector:
+    app: hello-world-flask
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 8081
+  type: LoadBalancer
+
