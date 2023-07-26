@@ -9,5 +9,9 @@ def hello_world():
 def test_route():
     return "Route is working!!"
 
+@app.route('/test-jenkins')
+def check_pipeline():
+    return 'Wohoo! Pipeline is triggered'
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=8081)
