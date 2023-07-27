@@ -9,7 +9,7 @@ def hello_world():
 def test_route():
     return "Route is working!!"
 
-@app.route('/test-jenkins')
+@app.route('/testing-jenkins')
 def check_pipeline():
     return 'Pipeline is triggered'
 
