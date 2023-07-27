@@ -11,7 +11,7 @@ def test_route():
 
 @app.route('/test-jenkins')
 def check_pipeline():
-    return 'Wohoo! Lets check it out! Pipeline is triggered'
+    return 'Pipeline is triggered'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=8081)
