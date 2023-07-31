@@ -6,8 +6,6 @@ pipeline {
     }
     environment {
         DOCKERHUB_CREDENTIALS = credentials('jenkins-docker-user')
-        sh 'echo $DOCKERHUB_CREDENTIALS_PSW'
-        sh 'echo $DOCKERHUB_CREDENTIALS_USR'
     }
 
     stages {
