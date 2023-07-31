@@ -1,29 +1,32 @@
+/* groovylint-disable-next-line CompileStatic */
 pipeline {
     agent any
-    environment{
-        registry = "sanjaybhide1990/flask-docker-app:v2"
-        registryCredential = 'jenkins-docker-user'
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+    }
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('jenkins-docker-user')
     }
 
     stages {
-        stage('Checkout'){
-            steps{
-                echo 'Checkout'
+        stage('Build') {
+            steps {
+                sh 'docker build -t sanjaybhide1990/flask-jenkins-docker-app .'
             }
         }
-        stage('Test'){
-            steps{
-                echo 'Testing'
+        stage('Login') {
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
-        stage('Build'){
-            steps{
-                echo 'Build'
+        stage('Push') {
+            steps {
+                sh 'docker push sanjaybhide1990/flask-jenkins-docker-app'
             }
         }
-        stage('Deploy'){
-            steps{
-                echo 'Deploy'
+        post {
+            always {
+                sh 'docker logout'
             }
         }
     }
