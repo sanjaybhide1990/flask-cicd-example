@@ -24,10 +24,10 @@ pipeline {
                 sh 'docker push sanjaybhide1990/flask-jenkins-docker-app'
             }
         }
-        post {
+    }
+    post {
             always {
                 sh 'docker logout | true'
             }
         }
-    }
 }
