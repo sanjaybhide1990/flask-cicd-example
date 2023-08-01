@@ -11,7 +11,7 @@ def test_route():
 
 @app.route('/testing-jenkins')
 def check_pipeline():
-    return 'Pipeline is triggered via Jenkinsfile'
+    return 'Let us hope the pipeline is triggered via Jenkinsfile'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=8081)
